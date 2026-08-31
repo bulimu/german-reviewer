@@ -1,0 +1,32 @@
+name: Editorial guidance proposal
+description: Propose a rule, boundary, example, or benchmark case
+title: "[Guidance]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Describe a demonstrated failure or recurring ambiguity.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: State the genre, audience, channel, register, locale, and source language where relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed guidance
+      description: Include boundaries and counterexamples, not only a preferred replacement.
+    validations:
+      required: true
+  - type: textarea
+    id: benchmark
+    attributes:
+      label: Suggested benchmark behavior
+      description: Explain the observable result that would show the guidance works.
+    validations:
+      required: false

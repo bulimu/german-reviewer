@@ -1,0 +1,6 @@
+interface:
+  display_name: "German Reviewer"
+  short_description: "German review with reusable project context"
+  default_prompt: "Use $german-reviewer to review this German text with the confirmed context of the current project."
+policy:
+  allow_implicit_invocation: true
