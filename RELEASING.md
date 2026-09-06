@@ -14,8 +14,9 @@ Use this checklist for a public release.
 1. Run the Skill Creator `quick_validate.py` script against the repository root.
 2. Check all relative Markdown links and code fences.
 3. Run every case in `tests/benchmark.md` at least twice with the release candidate.
-4. Record the model, reasoning setting, Skill commit, scores, and reviewer notes.
-5. Resolve every critical failure and rerun affected cases.
+4. Run the relevant specialized suites, including `tests/project-context.md` and `tests/fachartikel-editorial.md`, when their behavior changed.
+5. Record the model, reasoning setting, Skill commit, scores, and reviewer notes.
+6. Resolve every critical failure and rerun affected cases.
 
 ## Publish
 

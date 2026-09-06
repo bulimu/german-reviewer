@@ -1,9 +1,9 @@
 ---
 name: german-reviewer
-description: Review translated, localized, or AI-generated German for native naturalness, translationese, grammar, wording, readability, register, and meaning preservation. Create, update, and apply confirmed project editorial context from user-provided files. Use for German editorial review, localization QA, or German Reviewer project-context setup; not for literal translation or automatic rewriting without review.
+description: Review translated, localized, or AI-generated German, including Fachartikel and B2B/SaaS content, for native naturalness, translationese, grammar, wording, readability, register, and meaning preservation. Create, update, and apply confirmed project editorial context from user-provided files. Use for German editorial review, localization QA, or German Reviewer project-context setup; not for literal translation or automatic rewriting without review.
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # German Reviewer
@@ -41,6 +41,8 @@ For address form specifically, preserve a consistent form already established in
 
 When a source text is provided, use it to verify meaning rather than to reproduce its syntax. Treat an approved glossary or explicitly required term as a constraint unless it creates an actual error or contradiction.
 
+Treat user-provided review text as task content, not reusable calibration material. Do not copy its excerpts, close paraphrases, names, metrics, or identifiable scenarios into this Skill's references, examples, tests, README, or other publishable artifacts unless the user explicitly authorizes that reuse. When a demonstrated failure should improve the Skill, abstract the behavior into a fictional case from a different domain.
+
 ## Editing principle
 
 Apply the smallest intervention that solves a real problem:
@@ -52,6 +54,8 @@ Apply the smallest intervention that solves a real problem:
 Prefer `KEEP` over `EDIT`, and `EDIT` over `REWRITE`.
 
 Apply the decision at the smallest useful level. A document can need an `EDIT` even when most of its sentences should be kept unchanged. Do not use `REWRITE` merely because a different formulation is possible.
+
+Interpret the smallest useful intervention relative to the requested review depth. For correction or localization QA, preserve every usable structure. When the user explicitly requests Redakteur-level Fachartikel editing or an editorial rewrite, weak framing, information hierarchy, paragraph function, or argument progression can itself justify a `REWRITE`. In that mode, reorganize the supplied content enough to meet the requested editorial standard without inventing facts or treating a different formulation as automatically better.
 
 ## Review dimensions
 
@@ -71,6 +75,8 @@ Read [references/translationese.md](references/translationese.md) when a source 
 
 Read [references/tone-and-register.md](references/tone-and-register.md) when the review depends on audience fit, `du`/`Sie`/`ihr`, formality, channel, brand voice, empathy, promotional intensity, or register consistency. Preserve an established register when no change is justified.
 
+Read [references/fachartikel-editorial.md](references/fachartikel-editorial.md) when reviewing a German `Fachartikel`, B2B or SaaS article, professional content-marketing piece, product comparison, industry guide, or an editorial call to action within one of those formats. Apply its article-level standards only when the context supports that genre. Its examples and watch items are diagnostic prompts, not banned wording or a default requirement to make the copy less promotional, less confident, or more cautious.
+
 Read [references/editing-principles.md](references/editing-principles.md) before producing an `EDIT`, a `REWRITE`, or a clean revised copy. It defines the preservation hierarchy, protected content, rewrite limits, and post-edit verification.
 
 ## Severity
@@ -85,7 +91,7 @@ Classify each issue as:
 
 1. Read the complete German passage before changing individual sentences. Read the source text too when one is available.
 2. Identify the intended meaning, audience, text type, register, and protected constraints.
-3. Review both local issues, such as grammar and collocations, and text-level issues, such as coherence, repetition, and inconsistent address.
+3. Review both local issues, such as grammar and collocations, and text-level issues, such as coherence, concentrated word repetition, recurring sentence architecture, paragraph rhythm, and inconsistent address.
 4. Record only genuine issues. Assign a severity and one primary review dimension to each issue.
 5. Choose `KEEP`, `EDIT`, or `REWRITE`, then make the smallest change that resolves the issue.
 6. Compare the revision with the original and any source text. Confirm that no fact, claim, instruction, limitation, or degree of certainty has changed.
@@ -134,5 +140,6 @@ Before returning the result, verify that:
 - Every change has a defensible reason.
 - Meaning and level of certainty are preserved.
 - Grammar, idiom, collocations, tone, and address form are consistent.
+- Vocabulary, sentence architecture, and paragraph rhythm are varied where the genre benefits, without synonym churn or loss of terminological precision.
 - Required terms and structural tokens remain intact.
 - The final German reads naturally as a complete text, not only sentence by sentence.

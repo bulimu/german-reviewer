@@ -4,7 +4,7 @@ An open-source editorial Skill for reviewing translated, localized, and AI-gener
 
 German Reviewer goes beyond formal grammar. It asks whether a text reads like natural German written for its actual audience, channel, and purpose, and whether editing is necessary at all.
 
-Version: `0.2.0`
+Version: `0.3.0`
 
 ## Core principle
 
@@ -37,11 +37,39 @@ Issues are classified as `Must fix`, `Recommended`, or `Optional`.
 - German native-language editorial review
 - Localization QA with or without a source text
 - Review of AI-generated German
+- Redakteur-level review of German `Fachartikel`, B2B/SaaS articles, product comparisons, and professional content marketing
 - Blog, documentation, UI, support, email, marketing, and business copy
 - `du`, `Sie`, `ihr`, and neutral-address consistency
 - Meaning, terminology, placeholder, and formatting preservation
 
 The Skill is not a generic synonym generator, automatic humanizer, source-text fact checker, or substitute for legal, medical, financial, or regulatory experts.
+
+## Fachartikel editorial profile
+
+For German `Fachartikel`, B2B/SaaS articles, product comparisons, industry guides, and professional content marketing, German Reviewer can apply an additional [Fachartikel editorial guide](references/fachartikel-editorial.md).
+
+The profile targets the judgment of a native German professional editor. It reviews article structure, argument progression, use-case-based assessment, promotional intensity, lexical range, sentence architecture, paragraph rhythm, SEO constraints, and editorial calls to action. It distinguishes language QA, editorial polish, and Redakteur-level rewriting so a structurally weak passage is not limited to sentence-by-sentence correction. It favors concrete relevance and supported judgment over empty praise, but it does not equate professionalism with low-intensity language or automatically weaken confident copy.
+
+```text
+Use $german-reviewer to review this German B2B SaaS article as a Fachartikel.
+
+Audience: German operations professionals
+Editorial standard: Native German professional editor
+Review depth: Redakteur-level editorial rewrite
+Tone: Editorial, clear, reader-oriented
+Address: Sie
+Promotion: Confident where supported; no empty hype
+CTA: Preserve its function and strength unless a specific mismatch requires editing
+
+German:
+<your article>
+```
+
+Professional does not mean academic, bureaucratic, automatically formal, or uniformly restrained. A Fachartikel can use `du`, `Sie`, or neutral wording according to the project context, and it can make clear reader promises when the article supports them. Required product terms and SEO keywords remain protected; ordinary-word or sentence-pattern repetition is changed only when it makes the article mechanical or weakens comprehension.
+
+Editorial variety is functional rather than decorative. The profile varies ordinary vocabulary, sentence openings, clause structure, sentence length, and paragraph purpose where monotony weakens the article. It first improves information order and syntax, and only then changes individual words; product names, approved terms, and necessary repetitions remain consistent.
+
+Private or internal material is never copied into reusable examples, tests, or public documentation without explicit permission. Private status does not by itself mean that every claim is verified or must be preserved as approved campaign wording; the review distinguishes privacy, factual support, source fidelity, and wording protection.
 
 ## Quick start
 
@@ -153,6 +181,7 @@ When the user asks for a clean copy only, the Skill returns only the revised Ger
 - [Focused EDIT](examples/02-focused-edit.md)
 - [Source-based localization QA](examples/03-localization-qa.md)
 - [Justified REWRITE](examples/04-rewrite.md)
+- [Fachartikel editorial review](examples/05-fachartikel-editorial.md)
 
 These examples calibrate judgment. They are not universal wording templates.
 
@@ -173,16 +202,19 @@ german-reviewer/
 |   |-- review-rubric.md
 |   |-- translationese.md
 |   |-- tone-and-register.md
+|   |-- fachartikel-editorial.md
 |   `-- editing-principles.md
 |-- examples/
 |   |-- README.md
 |   |-- 01-keep.md
 |   |-- 02-focused-edit.md
 |   |-- 03-localization-qa.md
-|   `-- 04-rewrite.md
+|   |-- 04-rewrite.md
+|   `-- 05-fachartikel-editorial.md
 |-- tests/
 |   |-- benchmark.md
-|   `-- project-context.md
+|   |-- project-context.md
+|   `-- fachartikel-editorial.md
 `-- .github/
     |-- ISSUE_TEMPLATE/
     `-- pull_request_template.md
@@ -205,11 +237,14 @@ The benchmark scores observable behavior rather than exact wording. Release cand
 
 The separate [project-context suite](tests/project-context.md) tests context creation, confirmation, automatic application, address-form inference, and temporary versus persistent overrides.
 
+The separate [Fachartikel editorial suite](tests/fachartikel-editorial.md) contains sixteen fictional cases covering natural analytical prose, empty praise, use-case judgment, repeated sentence architecture, protected terminology, source scope, context-appropriate and protected CTAs, neutral address, SEO constraints, pervasive template rewriting, supported reader promises, compact repetition repair, review depth, claim-status calibration, lexical range, and paragraph rhythm. It remains separate so the historical 16-case `/192` core benchmark stays comparable across releases.
+
 ## Design principles
 
 - Preserve meaning, facts, terminology, uncertainty, and structural tokens.
 - Prefer the smallest effective intervention.
 - Do not treat watchlist phrases as banned words.
+- For Fachartikel, prefer supported use-case judgment and article-level coherence over empty praise or template variation.
 - Do not make all German casual, short, active, or promotional.
 - Separate language editing from factual or professional-domain verification.
 - State an assumption only when it materially affects the result.
